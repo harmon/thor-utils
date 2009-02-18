@@ -1,0 +1,20 @@
+h1. About
+
+Thor extensions for easier work with shell colors, filelists from Rake and bindings to Merb.
+
+h1. Usage
+
+h2. General
+
+Just require thor-utils and you can use sh, ruby, thor, rake methods in subclasses of Thor class, you can use colors from Term::ANSIColor directly (blue "foo") and you can also use FileList from Rake.
+
+h2. Merb
+
+<pre>
+require "thor-utils"
+require "thor-utils/merb"
+
+class MyTasks < Thor
+  # use start_environment method
+end
+</pre>
