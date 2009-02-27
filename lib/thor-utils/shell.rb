@@ -1,17 +1,38 @@
 require "fileutils"
 require "term/ansicolor"
 
+String.send(:include, Term::ANSIColor)
+
 class Thor
   include FileUtils
-  include Term::ANSIColor
+  def success(*messages)
+    messages.each do |message|
+      puts message.green.bold
+    end
+  end
+
+  def error(*messages)
+    if messages.empty?
+      messages.push("Error")
+    end
+    messages.each do |message|
+      STDERR.puts message.red.bold
+    end
+    exit 1
+  end
+
+  def warn(*messages)
+    messages.each do |message|
+      STDERR.puts message.yellow.bold
+    end
+  end
+
   def sh(command)
-    puts blue("sh> ") + command.to_s
+    puts "sh> ".blue + command.to_s
     if returned = %x(#{command})
       puts returned
     else
-      puts red("Error:")
-      puts returned
-      exit 1
+      error returned
     end
   end
 
