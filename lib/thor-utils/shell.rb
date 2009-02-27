@@ -5,9 +5,21 @@ String.send(:include, Term::ANSIColor)
 
 class Thor
   include FileUtils
+  def banner(text)
+    print "=" * 10
+    print " #{text} "
+    puts "=" * 10
+  end
+
   def success(*messages)
     messages.each do |message|
       puts message.green.bold
+    end
+  end
+
+  def notice(*messages)
+    messages.each do |message|
+      puts message.green
     end
   end
 
@@ -18,6 +30,10 @@ class Thor
     messages.each do |message|
       STDERR.puts message.red.bold
     end
+  end
+
+  def error!(*args)
+    error(*args)
     exit 1
   end
 
