@@ -18,3 +18,7 @@ class MyTasks < Thor
   # use start_environment method
 end
 </pre>
+
+h1. Tips
+
+You may be also interested in filelist from Rake, which I've extracted, so you can use it without Rake dependency: http://github.com/botanicus/filelist/tree/master
